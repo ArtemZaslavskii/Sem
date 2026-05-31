@@ -1,0 +1,358 @@
+/* =============================================
+   ПЕРЕМЕННЫЕ И СБРОС
+   ============================================= */
+:root {
+  --bg: #0d0d0d;
+  --surface: #1a1a1a;
+  --surface2: #242424;
+  --border: #2e2e2e;
+  --accent: #00e676;
+  --accent2: #69f0ae;
+  --text: #f0f0f0;
+  --text-muted: #888;
+  --red: #ff5252;
+  --yellow: #ffd740;
+  --radius: 10px;
+  --font: 'Courier New', Courier, monospace;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  min-height: 100vh;
+}
+
+/* =============================================
+   УТИЛИТЫ
+   ============================================= */
+.hidden { display: none !important; }
+
+.screen { min-height: 100vh; }
+
+/* =============================================
+   ЭКРАН ПРИВЕТСТВИЯ
+   ============================================= */
+#welcome-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(ellipse at 20% 50%, #003320 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 30%, #001a10 0%, transparent 50%),
+    var(--bg);
+}
+
+.welcome-box {
+  text-align: center;
+  padding: 3rem 2.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 0 60px rgba(0, 230, 118, 0.08);
+}
+
+.logo {
+  font-size: 2.8rem;
+  font-weight: 900;
+  letter-spacing: -1px;
+  color: var(--text);
+}
+
+.logo span { color: var(--accent); }
+
+.welcome-sub {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin: 0.4rem 0 2rem;
+}
+
+.welcome-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.welcome-form input {
+  padding: 0.75rem 1rem;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.welcome-form input:focus {
+  border-color: var(--accent);
+}
+
+.welcome-form button {
+  padding: 0.75rem;
+  background: var(--accent);
+  color: #000;
+  border: none;
+  border-radius: var(--radius);
+  font-family: var(--font);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.welcome-form button:hover { background: var(--accent2); }
+.welcome-form button:active { transform: scale(0.98); }
+
+.error-msg {
+  color: var(--red);
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+/* =============================================
+   ШАПКА
+   ============================================= */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-logo {
+  font-size: 1.4rem;
+  font-weight: 900;
+}
+
+.header-logo span { color: var(--accent); }
+
+.header-greeting {
+  color: var(--accent);
+  font-size: 0.9rem;
+}
+
+/* =============================================
+   ПАНЕЛЬ УПРАВЛЕНИЯ
+   ============================================= */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  padding: 1rem 2rem;
+  background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+}
+
+.control-input,
+.control-select {
+  padding: 0.5rem 0.9rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 0.85rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.control-input { flex: 1; min-width: 180px; }
+.control-input:focus,
+.control-select:focus { border-color: var(--accent); }
+
+.control-select option { background: var(--surface); }
+
+.control-btn {
+  padding: 0.5rem 1rem;
+  background: var(--accent);
+  color: #000;
+  border: none;
+  border-radius: var(--radius);
+  font-family: var(--font);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.control-btn:hover { background: var(--accent2); }
+
+.control-btn.secondary {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+
+.control-btn.secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* =============================================
+   СТАТИСТИКА
+   ============================================= */
+.stats-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 0.7rem 2rem;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.stats-bar span { white-space: nowrap; }
+
+#stat-alive { color: var(--accent); }
+#stat-dead { color: var(--red); }
+#stat-unknown { color: var(--yellow); }
+
+/* =============================================
+   СЕТКА КАРТОЧЕК
+   ============================================= */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.2rem;
+  padding: 1.5rem 2rem;
+}
+
+/* Карточка */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform 0.2s, border-color 0.2s;
+  cursor: default;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+}
+
+.card img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  display: block;
+}
+
+.card-body {
+  padding: 0.9rem;
+}
+
+.card-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-meta {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* Бейдж статуса */
+.badge {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 99px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.badge-alive  { background: rgba(0,230,118,.15); color: var(--accent); }
+.badge-dead   { background: rgba(255,82,82,.15);  color: var(--red); }
+.badge-unknown{ background: rgba(255,215,64,.15); color: var(--yellow); }
+
+/* =============================================
+   ЗАГРУЗКА / ОШИБКА
+   ============================================= */
+.loader {
+  text-align: center;
+  padding: 3rem;
+  color: var(--accent);
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+}
+
+.error-block {
+  text-align: center;
+  padding: 3rem;
+  color: var(--red);
+  font-size: 0.9rem;
+}
+
+/* =============================================
+   ПАГИНАЦИЯ
+   ============================================= */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1.5rem 2rem 2.5rem;
+}
+
+.page-btn {
+  padding: 0.5rem 1.2rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.page-btn:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.page-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.page-info {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* =============================================
+   АДАПТИВ
+   ============================================= */
+@media (max-width: 600px) {
+  .header { padding: 0.8rem 1rem; }
+  .controls { padding: 0.8rem 1rem; }
+  .cards-grid { padding: 1rem; gap: 0.8rem; }
+  .stats-bar { padding: 0.5rem 1rem; gap: 0.8rem; }
+}

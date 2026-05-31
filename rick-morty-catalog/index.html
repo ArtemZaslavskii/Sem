@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rick & Morty — Каталог персонажей</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ===== ЭКРАН ПРИВЕТСТВИЯ ===== -->
+  <div id="welcome-screen" class="screen">
+    <div class="welcome-box">
+      <h1 class="logo">Rick&Morty<span>.</span></h1>
+      <p class="welcome-sub">Каталог персонажей</p>
+      <div class="welcome-form">
+        <input
+          type="text"
+          id="username-input"
+          placeholder="Введите ваше имя"
+          maxlength="30"
+        />
+        <button id="welcome-btn">Далее →</button>
+      </div>
+      <p id="welcome-error" class="error-msg hidden">Пожалуйста, введите имя</p>
+    </div>
+  </div>
+
+  <!-- ===== ОСНОВНОЙ ЭКРАН ===== -->
+  <div id="main-screen" class="screen hidden">
+
+    <!-- Шапка -->
+    <header class="header">
+      <span class="header-logo">Rick&Morty<span>.</span></span>
+      <span id="greeting" class="header-greeting"></span>
+    </header>
+
+    <!-- Панель управления -->
+    <section class="controls">
+
+      <!-- Поиск по имени -->
+      <input
+        type="text"
+        id="search-input"
+        class="control-input"
+        placeholder="🔍 Поиск по имени..."
+      />
+
+      <!-- Фильтр по статусу -->
+      <select id="status-filter" class="control-select">
+        <option value="">Все статусы</option>
+        <option value="alive">Живой</option>
+        <option value="dead">Мёртвый</option>
+        <option value="unknown">Неизвестно</option>
+      </select>
+
+      <!-- Фильтр по полу -->
+      <select id="gender-filter" class="control-select">
+        <option value="">Все полы</option>
+        <option value="male">Мужской</option>
+        <option value="female">Женский</option>
+        <option value="genderless">Без пола</option>
+        <option value="unknown">Неизвестно</option>
+      </select>
+
+      <!-- Сортировка -->
+      <button id="sort-btn" class="control-btn" data-dir="asc">
+        Сортировка: А → Я
+      </button>
+
+      <!-- Сброс фильтров -->
+      <button id="reset-btn" class="control-btn secondary">Сбросить</button>
+
+    </section>
+
+    <!-- Статистика -->
+    <section id="stats-bar" class="stats-bar">
+      <span id="stat-total">Всего: —</span>
+      <span id="stat-alive">Живых: —</span>
+      <span id="stat-dead">Мёртвых: —</span>
+      <span id="stat-unknown">Неизвестно: —</span>
+    </section>
+
+    <!-- Сетка карточек -->
+    <main id="cards-grid" class="cards-grid"></main>
+
+    <!-- Состояние загрузки / ошибки -->
+    <div id="loader" class="loader hidden">Загрузка...</div>
+    <div id="error-block" class="error-block hidden"></div>
+
+    <!-- Пагинация -->
+    <div class="pagination">
+      <button id="prev-btn" class="page-btn" disabled>← Назад</button>
+      <span id="page-info" class="page-info">Страница 1</span>
+      <button id="next-btn" class="page-btn">Вперёд →</button>
+    </div>
+
+  </div>
+
+  <!-- JS модули -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
